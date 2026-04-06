@@ -1,0 +1,75 @@
+title Instagram Thrift Creator Store ER Diagram
+
+Customer [icon: user, color: blue] {
+  customer_id integer [pk]
+  name varchar(50)
+  instagram_handle varchar(50)
+  phone varchar(20)
+  email varchar(50)
+  address_line text
+  city varchar(20)
+  country varchar(20)
+}
+
+Product [icon: package, color: orange] {
+  product_id integer [pk]
+  product_type varchar ("Thrift/Handmade")
+  name varchar(50)
+  category varchar ("M/F")
+  condition varchar ("good/better/best")
+  size varchar ("XS/S/M/L/XL")
+  color varchar(50)
+  price decimal(10,2)
+  stock_quantity integer
+}
+
+Order [icon: shopping-cart, color: green] {
+  order_id integer [pk]
+  customer_id integer [fk]
+  order_date datetime
+  order_source varchar ("InstaDM/WhatsApp")
+  total_amount decimal(10,2)
+  order_status varchar ("Pending/Confirm")
+}
+
+OrderItem [icon: list, color: green] {
+  order_item_id integer [pk]
+  order_id integer [fk]
+  product_id integer [fk]
+  quantity integer
+  item_price decimal(10,2)
+}
+
+Payment [icon: credit-card, color: purple] {
+  payment_id integer [pk]
+  order_id integer [fk]
+  payment_method varchar ("UPI/Card/COD")
+  payment_status varchar ("Pending/Completed")
+  amount_paid decimal(10,2)
+  payment_date datetime
+}
+
+Shipping [icon: truck, color: red] {
+  shipping_id integer [pk]
+  order_id integer [fk]
+  shipping_address text
+  courier_partner varchar(100)
+  shipping_status varchar ("Dispatched/Delivered")
+}
+
+Review [icon: star, color: yellow] {
+  review_id integer [pk]
+  customer_id integer [fk]
+  product_id integer [fk]
+  rating integer // e.g., 1 to 5 stars
+  comment text
+  review_date datetime
+}
+
+Customer.customer_id < Order.customer_id
+Order.order_id < OrderItem.order_id
+Product.product_id < OrderItem.product_id
+Order.order_id - Payment.order_id
+Order.order_id - Shipping.order_id
+Customer.customer_id < Review.customer_id
+Product.product_id < Review.product_id
