@@ -11,7 +11,6 @@ The database is designed to handle the specific needs of this business, includin
 1. [Overview](#-overview)
 2. [Table Descriptions](#-table-descriptions)
 3. [Relationships](#-relationships)
-4. [Diagram Source Code](#-diagram-source-code)
 
 ---
 
