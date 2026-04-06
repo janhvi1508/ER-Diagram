@@ -1,5 +1,3 @@
-title Instagram Thrift Creator Store ER Diagram
-
 Customer [icon: user, color: blue] {
   customer_id integer [pk]
   name varchar(50)
